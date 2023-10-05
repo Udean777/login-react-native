@@ -1,12 +1,20 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { AuthProvider } from './src/context/AuthContext';
-import Navigation from './src/components/tabs/Navigation';
+import { AuthProvider, useAuth } from './src/context/AuthContext';
+import Navigation from './src/components/Navigation/Navigation';
 
 export default function App() {
+  const {authState} = useAuth()
   return (
     <AuthProvider>
       <NavigationContainer>
-      <Navigation/>
+      {authState?.authenticated ? 
+    ( 
+      <BottomTabs/>
+    )
+     : (
+    <Navigation/>
+    )
+    }
     </NavigationContainer>
     </AuthProvider>
   );

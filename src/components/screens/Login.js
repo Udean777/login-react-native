@@ -1,6 +1,7 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
+import {TextInput} from 'react-native-paper'
 import React, { useState } from 'react'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../../context/AuthContext'
 import { Button } from 'react-native-paper'
 
 const Login = () => {
@@ -30,10 +31,10 @@ const Login = () => {
     <View style={{flex:1, justifyContent: "center", alignItems: "center", gap: 20}}>
       <Text style={styles.heading}>Login</Text>
       <View style={{display:"flex", gap:10, width: 200}}>
-        <TextInput style={styles.input} placeholder='Email' onChangeText={(text) => setEmail(text)}/>
-        <TextInput style={styles.input} placeholder='Password' onChangeText={(text) => setPassword(text)} secureTextEntry/>
+        <TextInput mode="outlined" label="Username/Email" onChangeText={(text) => setEmail(text)}/>
+        <TextInput mode="outlined" label="Password" onChangeText={(text) => setPassword(text)} secureTextEntry/>
       </View>
-       <Button mode='contained' onPress={login}>Sign In</Button>
+       <Button mode='contained' buttonColor='#3a01ba' onPress={login}>Sign In</Button>
        {error && <Text style={{color: "red", fontWeight: "900"}}>{error}</Text>}
     </View>
   )
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 25,
     fontWeight: "900",
-    color: "#29adf9"
+    color: "#3a01ba"
   },
   input: {
     borderColor: "grey",

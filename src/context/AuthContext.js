@@ -1,7 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { Platform } from 'react-native';
 import { API_URL, access_token, client_id, client_secret, refresh_token, expires_in } from 'react-native-dotenv';
 
 const AuthContext = createContext({});
@@ -88,14 +87,11 @@ export const AuthProvider = ({ children }) => {
       expires_in,
     });
 
-    if (Platform.OS === 'web') {
-      localStorage.removeItem('access_token');
-
-      window.location.href = '/Login';
-    } else {
       await AsyncStorage.removeItem(access_token);
       await AsyncStorage.removeItem(refresh_token);
-    }
+
+      // axios.delete(`${API_URL}/api/logout`)
+
   };
 
   const value = {
